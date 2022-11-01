@@ -1,0 +1,123 @@
+<div class="row" style="margin-top: 10px;">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4><i class="fa fa-file"></i> &nbsp;Quản lý tài liệu</h4>
+        <hr/>
+
+        <div class="form-group row">
+          <label class="col-md-1 col-form-label" for="text-input">Mã văn bản:</label>
+          <div class="col-md-2">
+            <ng-select2
+            [data]="documentCodeList"
+            [placeholder]="'Chọn mã văn bản...'"
+            [options]="options"
+            [(ngModel)]="documentCodeArr"
+            (valueChanged)="getFilterOptions($event, fileCodeArr, confirmedArr, statusArr)"
+        ></ng-select2>
+          </div>
+          <label class="col-md-1 col-form-label" for="text-input">Mã hồ sơ:</label>
+          <div class="col-md-2">
+            <ng-select2
+            [data]="fileCodeList"
+            [placeholder]="'Chọn mã hồ sơ...'"
+            [options]="options"
+            [(ngModel)]="fileCodeArr"
+            (valueChanged)="getFilterOptions(documentCodeArr, $event, confirmedArr, statusArr)"
+        ></ng-select2>
+          </div>
+          <label class="col-md-1 col-form-label" for="text-input">TT Duyệt:</label>
+          <div class="col-md-2">
+            <ng-select2
+            [data]="confirmedSelect2List"
+            [placeholder]="'Chọn TT Duyệt...'"
+            [options]="options"
+            [(ngModel)]="confirmedArr"
+            (valueChanged)="getFilterOptions(documentCodeArr, fileCodeArr, $event, statusArr)"
+        ></ng-select2>
+          </div>
+          <label class="col-md-1 col-form-label" for="text-input">Trạng thái:</label>
+          <div class="col-md-2">
+            <ng-select2
+            [data]="statusSelect2List"
+            [placeholder]="'Chọn trạng thái...'"
+            [options]="options"
+            [(ngModel)]="statusArr"
+            (valueChanged)="getFilterOptions(documentCodeArr, fileCodeArr,confirmedArr,  $event)"
+        ></ng-select2>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary btn-sm" style="margin-top: 4px;"  [routerLink]="['/QuanLyTaiLieu/taiLieuPdf']" routerLinkActive="router-link-active">
+              <span class="fa fa-plus"></span>
+              <span >
+                  Thêm mới tài liệu
+              </span>
+          </button>
+          </div>
+          
+         </div>
+
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Hồ sơ số</th>
+              <th>Tài liệu số</th>
+              <th>Stt trong hồ sơ</th>
+              <th>Tên loại tài liệu</th>
+              <th>Nội dung</th>
+              <th>Số tờ</th>
+              <th>Mức độ tin cậy</th>
+              <th>Tình trạng</th>
+              <th>Ghi chú</th>
+              <th>TT Duyệt</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let document of documents;index as i">
+              <td>{{i+1}}</td>
+              <td>{{ document.fileCode }}</td>
+              <td>{{ document.documentCode }}</td>
+              <td>{{ document.docOrdinal }}</td>
+              <td>{{ document.typeName }}</td>
+              <td>{{ document.subject }}</td>
+              <td>{{ document.pageAmount }}</td>
+              <td>{{ document.mucDoTinCay }}</td>
+              <td>{{ document.format }}</td>
+              <td>{{ document.description }}</td>
+              <td *ngIf = 'document.signature === 1'><span class="badge badge-success">Đã duyệt</span></td>
+              <td *ngIf = 'document.signature === 0'><span class="badge badge-danger">Chưa duyệt</span></td>
+              <td *ngIf = 'document.status === 1'><span class="badge badge-success">Đã sửa</span></td>
+              <td *ngIf = 'document.status === 0'><span class="badge badge-danger">Chưa sửa</span></td>
+              <td style="width:137px" class="center">
+                <button class="btn btn-primary fa fa-eye" [routerLink]="['/QuanLyTaiLieu/taiLieu', document.documentId]"
+                  routerLinkActive="router-link-active"></button>
+                  <!-- *ngIf="roles == 'admin'" -->
+                <span><button class="btn btn-primary fa fa-edit"
+                  [routerLink]="['/QuanLyTaiLieu/taiLieuPdf', document.documentId]"     replaceUrl="true" queryParamsHandling="merge"></button></span>
+                <!-- <span *ngIf="roles == 'admin'"><button class="btn btn-primary fa fa-trash"
+                    (click)="openDeleteDialog(document.documentId)"></button></span> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+          <ul class="pagination">
+            <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPages($event)"></ngb-pagination>
+          </ul>
+        </nav>
+        </div>
+    </div>
+  </div>
+  <!--/.col-->
+  <!-- <button class="btn btn-primary fa fa-eye" [routerLink]="['/QuanLyTaiLieu/taiLieuPdf']"
+  routerLinkActive="router-link-active"></button> -->
+  <style>
+    .mat-drawer-inner-container {
+      overflow: visible;
+    }
+  </style>

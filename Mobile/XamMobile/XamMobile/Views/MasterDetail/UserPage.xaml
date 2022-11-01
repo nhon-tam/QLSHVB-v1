@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamMobile.Views.MasterDetail.UserPage"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True"
+             Title="Tài khoản">
+    <ContentPage.Content>
+        <ScrollView Padding="0,5,5,5">
+            <StackLayout>
+                <Grid ColumnSpacing="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="220"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Row="0" Grid.Column="0">
+                        <Frame CornerRadius="5" Padding="15">
+                            <Image Aspect="AspectFill" Source="{Binding ImageSourceAvatar}" HeightRequest="180" WidthRequest="100">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding UpdatePictureCommand}"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                                <Image.Triggers>
+                                    <DataTrigger Binding="{Binding ImageSourceAvatar}" TargetType="Image" Value="null">
+                                        <Setter Property="Source" Value="image_default.png"></Setter>
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1">
+                        <Grid VerticalOptions="CenterAndExpand" ColumnSpacing="1" RowSpacing="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="0" Grid.Column="0" Text="Họ tên:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="0" Grid.Column="1" Text="{Binding UserInfoModel.TenNhanVien}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="1" Grid.Column="0" Text="Ngày sinh:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="1" Grid.Column="1" Text="{Binding NgaySinhFormat}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="2" Grid.Column="0" Text="Giới tính:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="2" Grid.Column="1" Text="{Binding UserInfoModel.GioiTinhStr}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="3" Grid.Column="0" Text="Quê quán:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="3" Grid.Column="1" Text="{Binding UserInfoModel.NguyenQuan}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="4" Grid.Column="0" Text="SoCMT:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="4" Grid.Column="1" Text="{Binding UserInfoModel.SoCMT}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="5" Grid.Column="0" Text="Ngày cấp:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="5" Grid.Column="1" Text="{Binding NgayCapFormat}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="6" Grid.Column="0" Text="Nơi cấp:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="6" Grid.Column="1" Text="{Binding UserInfoModel.NoiCap}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="7" Grid.Column="0" Text="SĐT:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="7" Grid.Column="1" Text="{Binding UserInfoModel.SoDienThoai}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="8" Grid.Column="0" Text="Email:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="8" Grid.Column="1" Text="{Binding UserInfoModel.Email}"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource TitleLabel}" Grid.Row="9" Grid.Column="0" Text="SĐT:"></Label>
+                            <Label HorizontalOptions="FillAndExpand" LineBreakMode="NoWrap" Style="{StaticResource ContentLabel}" Grid.Row="9" Grid.Column="1" Text="{Binding UserInfoModel.SoDienThoai}"></Label>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+                        <StackLayout Margin="0,5,0,5">
+                            <BoxView HeightRequest=".75" BackgroundColor="{StaticResource LightGray}" HorizontalOptions="FillAndExpand" />
+                            <Grid Padding="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="25" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Chỉnh sửa thông tin nhân viên" FontAttributes="Bold" FontSize="{StaticResource FontSizeNormal}" TextColor="{StaticResource MainColor}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Button
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnUpdateButtonClicked"
+                                    CommandParameter="{Binding .}"
+                                    VerticalOptions="Start"
+                                    WidthRequest="20" HeightRequest="20"
+                                    ImageSource="pencil.png" />
+                                </StackLayout>
+                            </Grid>
+                            <BoxView HeightRequest=".75" BackgroundColor="{StaticResource LightGray}" HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

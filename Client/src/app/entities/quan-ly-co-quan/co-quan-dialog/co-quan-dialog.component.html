@@ -1,0 +1,151 @@
+
+<form [formGroup]="form" (ngSubmit)="save()" enctype="multipart/form-data" class="form-horizontal">
+  <div class="modal-header bg-primary" aria-hidden="true">
+    <div *ngIf="coQuan.coQuanID != null; else themMoi">
+      <h4 class="modal-title">Chỉnh sửa cơ quan</h4>
+    </div>
+    <ng-template #themMoi>
+      <h4 class="modal-title">Thêm mới cơ quan</h4>
+    </ng-template>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Mã cơ quan</label>
+      <div class="col-md-9">
+        <input id="textarea-input-1" name="coQuanID" rows="9" class="form-control"
+          [(ngModel)]="coQuan.coQuanID" [readonly]="isEdit == true ? 'readonly' : false" required>
+      </div>
+    </div> -->
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Mã cơ quan: <span style="color: red;">(*)</span></label>
+      <div class="col-md-9">
+        <input type="text" formControlName="organCode" placeholder="Nhập mã cơ quan" name="organCode" [(ngModel)]="coQuan.organCode" class="form-control" [ngClass]="{'is-invalid': submitted && f.organCode.errors}" />
+        <div *ngIf="submitted && f.organCode.errors" class="invalid-feedback">
+            <div *ngIf="f.organCode.errors.required">Mã cơ quan không được để trống.</div>
+          </div>
+    </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Tên cơ quan: <span style="color: red;">(*)</span></label>
+      <div class="col-md-9">
+        <input type="text" formControlName="tenCoQuan" placeholder="Nhập tên cơ quan" name="tenCoQuan" [(ngModel)]="coQuan.tenCoQuan" class="form-control" [ngClass]="{'is-invalid': submitted && f.tenCoQuan.errors}" />
+        <div *ngIf="submitted && f.tenCoQuan.errors" class="invalid-feedback">
+            <div *ngIf="f.tenCoQuan.errors.required">Tên cơ quan không được để trống.</div>
+          </div>
+    </div>
+    </div>
+    <!-- <div class="form-group row">
+      <label class="col-md-3 col-form-label lbl-padding" for="text-input">Mã cơ quan</label>
+        <mat-form-field class="col-md-9">
+          <input matInput value="" id="text-input" name="macoquan" [(ngModel)]="coQuan.macoquan">
+        </mat-form-field>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label lbl-padding" for="text-input">Tên cơ quan</label>
+        <mat-form-field class="col-md-9">
+          <input matInput value="" id="text-input-name" name="tencoquan" [(ngModel)]="coQuan.tencoquan">
+        </mat-form-field> -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="organ-type">Loại cơ quan: </label>
+          <div class="col-md-9">
+            <!-- <select2 [data]="organTypeList" (update)="update1($event)" id="organ-type" [value]="defaultValue">
+            </select2> -->
+            <ng-select2
+            formControlName="loaiCoQuanID"
+            [data]="organTypeList"
+            [placeholder]="'Chọn loại cơ quan...'"
+            [options]="options"
+            name="loaiCoQuanID"
+            [(ngModel)]="coQuan.loaiCoQuanID"
+          ></ng-select2>
+          </div>
+        </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="city">Tỉnh / Thành phố: <span style="color: red;">(*)</span></label>
+      <div class="col-md-9">
+        <ng-select2
+            formControlName="tinhID"
+            [data]="provinceList"
+            [placeholder]="'Chọn Tỉnh/Thành phố...'"
+            [options]="options"
+            name="tinhID"
+            [(ngModel)]="coQuan.tinhID"
+            (valueChanged)="getDistrictByProvinceId($event)"
+          ></ng-select2>
+          <div *ngIf="submitted && f.tinhID.status == 'INVALID'">
+            <div class="error">Vui lòng chọn loại cơ quan.</div>
+          </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="district">Quận / Huyện: </label>
+      <div class="col-md-9">
+        <ng-select2
+            formControlName="huyenID"
+            [data]="districtList"
+            [placeholder]="'Chọn Quận/Huyện...'"
+            [options]="options"
+            name="huyenID"
+            [(ngModel)]="coQuan.huyenID"
+            [disabled]="enaDistrict"
+            (valueChanged)="getWardByDistrictId($event)"
+            ></ng-select2>
+            <!-- <div *ngIf="submitted && f.huyenID.status == 'INVALID'">
+              <div class="error">Vui lòng chọn quận / huyện.</div>
+            </div> -->
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="ward">Xã / Phường / Thị Trấn:</label>
+      <div class="col-md-9">
+        <ng-select2
+            formControlName="xaPhuongID"
+            [data]="wardList"
+            [placeholder]="'Chọn Xã/Phường/Thị Trấn...'"
+            [options]="options"
+            name="xaPhuongID"
+            [(ngModel)]="coQuan.xaPhuongID"
+            [disabled]="enaWard"
+            ></ng-select2>
+      </div>
+    </div>
+    <div class="form-group row">
+
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Mô tả:</label>
+      <div class="col-md-9">
+        <input formControlName="description" name="description" class="form-control"
+          [(ngModel)]="coQuan.description">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Ghi chú:</label>
+      <div class="col-md-9">
+        <input formControlName="notes" name="notes" class="form-control"
+          [(ngModel)]="coQuan.notes">
+          
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="textarea-input">Địa chỉ chi tiết:</label>
+      <div class="col-md-9">
+        <textarea formControlName="addressDetail" name="addressDetail" rows="9" class="form-control"
+          [(ngModel)]="coQuan.addressDetail"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="clear()">
+      <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+    </button>
+    
+    <button type="submit" class="btn btn-primary">
+      <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+    </button>
+  </div>
+</form>
+

@@ -1,0 +1,27 @@
+main {
+    background-image: url("../../../assets/img/information-systems-2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media 
+  (-webkit-min-device-pixel-ratio: 2), 
+  (min-resolution: 1000dpi) { 
+  main {
+    background-image: url("../../../assets/img/information-systems-2.jpg");
+  }
+}
+
+.grid-login {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.resp {
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.mt-0 {
+  margin-top: 5px !important;
+}

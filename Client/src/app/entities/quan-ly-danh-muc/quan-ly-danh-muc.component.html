@@ -1,0 +1,102 @@
+<div class="row" style="margin-top: 10px;">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <ngx-spinner name="dataTable">
+          <br>
+          <p class="loading" style="color: blue;">Đang tải dữ liệu, vui lòng chờ...</p>
+        </ngx-spinner>
+        <ngx-spinner name="filterOptions">
+          <br>
+        </ngx-spinner>
+        <h4><i class="fa fa-align-justify"></i> &nbsp;Quản lý Mục lục</h4>
+        <hr/>
+        <div class="row">
+          <div class="col-md-4 row col-lg-4">
+            <label class="col-md-4 col-sm-6 col-form-label" for="select1">Cơ quan:</label>
+            <div style="margin-top:5px;" class="col-md-8 col-sm-6">
+              <ng-select2
+                [data]="organArr"
+                [placeholder]="'Chọn tên cơ quan...'"
+                [options]="options"
+                [(ngModel)]="arrayTypeValue"
+                (valueChanged)="getFilterOptions($event, arrayNameValue)"
+            ></ng-select2>
+            </div>
+          </div>
+          <div class="col-md-4 row col-lg-4">
+            <label class="col-md-4 col-sm-6 col-form-label" for="select1">Phông:</label>
+            <div style="margin-top:5px;" class="col-md-8 col-sm-6">
+              <ng-select2
+                [data]="fontArr"
+                [placeholder]="'Chọn tên phông...'"
+                [options]="options"
+                [(ngModel)]="arrayNameValue"
+                (valueChanged)="getFilterOptions(arrayTypeValue,$event)"
+            ></ng-select2>
+            </div>
+          </div>
+          <div class="row col-md-4 col-lg-4">
+            <label class="col-md-4 col-sm-6 col-form-label" for="text-input">Tìm kiếm</label>
+            <div class="col-md-8 col-sm-6" style="margin-top: 5px;">
+              <input type="text" id="text-input" (ngModelChange)="onChange($event)" ngModel="" name="searchText" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-2">
+              <button class="btn btn-primary btn-sm" style="margin-top: 9px;" (click)="openDialog()">
+                <span class="fa fa-plus"></span>
+                <span>
+                  Thêm mới mục lục
+                </span>
+              </button>
+          </div>
+        </div>
+
+      </div>
+        <!-- <app-them-moi-phong actionType="Thêm mới" iconClass="fa fa-plus" btnClass="btn btn-primary btn-sm"></app-them-moi-phong> -->
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <ngx-spinner name="paging">
+            <br>
+            <p class="loading" style="color: blue;"></p>
+          </ngx-spinner>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <!-- <th>Tên mục lục hồ sơ</th> -->
+              <th>Mục lục số</th>
+              <th>Số lượng hộp số</th>
+              <th>Ghi chú</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let danhmuc of danhmucs; index as i">
+              <td>{{i+1}}</td>
+              <!-- <td>{{ danhmuc.tabOfContName }}</td> -->
+              <td>{{ danhmuc.tabOfContNumber }}</td>
+              <td>{{ danhmuc.gearBoxCount}}</td>
+              <td>{{ danhmuc.note }}</td>
+
+              <td style="width:137px;text-align: center;">
+                <button class="btn btn-primary fa fa-eye" [routerLink]="['/QuanLyDanhMuc/danhMuc', danhmuc.tabOfContID]"
+                  routerLinkActive="router-link-active"></button>
+                <!-- <app-them-moi-phong [data]="['nguyễn duy tú', 'nguyễn văn a']" btnClass="btn btn-primary fa fa-edit"></app-them-moi-phong> -->
+                <button class="btn btn-primary fa fa-edit" (click)="openDialog(danhmuc.tabOfContID)" replaceUrl="true"
+                  queryParamsHandling="merge"></button>
+                <!-- <button class="btn btn-primary fa fa-trash" (click)="openDeleteDialog(danhmuc.tabOfContID)"></button> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+          <ul class="pagination">
+            <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPages($event)"></ngb-pagination>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+  <!-- <app-phong-dialog hidden="true"></app-phong-dialog> -->
+</div>

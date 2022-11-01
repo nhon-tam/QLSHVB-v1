@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamMobile.Views.MasterDetail.LogPage"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True"
+             Title="Nhật ký nhập liệu">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ListView HasUnevenRows="True" ItemSelected="ListView_ItemSelected" ItemsSource="{Binding Logs}" RowHeight="60" HeightRequest="{Binding LogListHeight}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame HasShadow="True" Margin="5" CornerRadius="10" Padding="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="45" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0">
+                                        <Label TextColor="Black" Style="{StaticResource TitleLabel}" Text="{Binding CustomNameDocumentNumber}"></Label>
+                                        <Label TextColor="Blue" Style="{StaticResource TitleLabel}" Text="{Binding TenNguoiTao}"></Label>
+                                        <Label TextColor="Black" Style="{StaticResource TitleLabel}" Text="{Binding Action}"></Label>
+                                        <Label TextColor="Blue" Style="{StaticResource ContentLabel}" Text="{Binding CreatedDateFormat}"></Label>
+                                    </StackLayout>
+                                    <!--<StackLayout Grid.Column="1" Padding="5">
+                                        <Button
+                                                    BackgroundColor="Transparent"
+                                                    Clicked="ShowPopup_Clicked"
+                                                    CommandParameter="{Binding .}"
+                                                    VerticalOptions="Start"
+                                                    ImageSource="dot_icon.png" />
+                                    </StackLayout>-->
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
