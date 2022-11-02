@@ -1,0 +1,103 @@
+<div class="row" style="margin-top: 10px;">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <ngx-spinner name="dataTable">
+            <br>
+            <p class="loading" style="color: blue;">Đang tải dữ liệu, vui lòng chờ...</p>
+          </ngx-spinner>
+          <ngx-spinner name="filterOptions">
+            <br>
+          </ngx-spinner>
+          <h4><i class="fa fa-align-justify"></i> Danh sách tài khoản</h4>
+          <hr/>
+          <!-- tuND3 -->
+          <!-- <h4><i class="fa fa-align-justify"></i> Danh sách tài khoản</h4>
+          <hr/> -->
+          <div style="margin-left: 6px;margin-right: 0px;margin-bottom: 10px;" class="row">
+            <div class="col-md-4 row col-lg-4">
+              <label class="col-md-4 col-sm-6 col-form-label" for="select1">Nhóm quyền:</label>
+              <div style="margin-top:5px;" class="col-md-8 col-sm-6">
+                <ng-select2
+                  [data]="userGroupArr"
+                  [placeholder]="'Chọn nhóm quyền...'"
+                  [options]="options"
+                  [(ngModel)]="arrayTypeValue"
+                  (valueChanged)="getFilterOptions($event)"
+              ></ng-select2>
+              </div>
+            </div>
+            <div class="row col-md-4 col-lg-4">
+              <label class="col-md-4 col-sm-6 col-form-label" for="text-input">Tìm kiếm:</label>
+              <div class="col-md-8 col-sm-6" style="margin-top: 5px;">
+                <input type="text" id="text-input" (ngModelChange)="onChange($event)" ngModel="" name="searchText" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-4" style="margin-top:5px;">
+              <button style="margin-top: 7px;" class="btn btn-primary btn-sm pull-right" (click)="openDialog()">
+                <span><i class="fa fa-plus"></i> Thêm mới tài khoản</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-sm">
+            <ngx-spinner name="paging">
+              <br>
+              <p class="loading" style="color: blue;"></p>
+            </ngx-spinner>
+            <thead>
+              <tr>
+                <th>Tên tài khoản</th>
+                <th>Người tạo</th>
+                <th>Ngày tạo</th>
+                <th>Trạng thái</th>
+                <th>Nhóm quyền</th>
+                <th>Quyền</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><b>&nbsp;{{ user.userName }}</b></td>
+                <td>{{ user.createBy }}</td>
+                <td>{{ user.createDate.split('T')[0] }}</td>
+                <td *ngIf="user.status == 1 else inactive">
+                  <span class="badge badge-success">Hoạt động</span>
+                </td>
+                <td>
+                  <span *ngIf="user.roleName == 'ADMIN'" style="color: red"> {{ user.roleName }}</span>
+                  <span *ngIf="user.roleName != 'ADMIN'" style="color: orange;"> {{ user.roleName }}</span>
+                </td>
+                <td *ngIf="user.roleName == 'USER' else admin">
+                  <span style="color:orange;">Sửa tài liệu</span>
+                  <span style="color: green;">Nhập tài liệu</span>
+                </td>
+                <td style="width:137px;text-align: center;">
+                    <!-- <button class="btn btn-primary fa fa-eye"></button> -->
+                    <button class="btn btn-primary fa fa-edit" (click)="openDialog(user.id)"></button>
+                    <!-- <button class="btn btn-primary fa fa-trash" (click)="openDeleteDialog(user.id)"></button> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination">
+              <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPages($event)"></ngb-pagination>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <ng-template #inactive>
+      <td>
+      <span class="badge badge-danger" style="margin-top: 5px;">Không hoạt động</span>
+    </td>
+    </ng-template>
+    <ng-template #admin>
+      <td>
+      <span style="color:red">Quản trị hệ thống</span>
+    </td>
+    </ng-template>
+    <!--/.col-->
+  </div>

@@ -1,0 +1,124 @@
+<div class="row" style="margin-top: 10px;">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <ngx-spinner name="dataTable">
+            <br>
+            <p class="loading" style="color: blue;">Đang tải dữ liệu, vui lòng chờ...</p>
+          </ngx-spinner>
+          <ngx-spinner name="filterOptions">
+            <br>
+          </ngx-spinner>
+          <h4><i class="fa fa-file"></i> &nbsp;Nhật ký </h4>
+          <hr/>
+          <div class="form-group row">
+            
+              <label class="col-md-1 col-form-label" for="text-input">Tài khoản:</label>
+              <div class="col-md-2">
+                <ng-select2
+                  [data]="userArr"
+                  [placeholder]="'Chọn tên tài khoản...'"
+                  [options]="options"
+                  [(ngModel)]="userNameArr"
+                  (valueChanged)="getFilterOptions($event, documentCodeArr, fromDate, endDate)"
+              ></ng-select2>
+              </div>
+            
+              <label class="col-md-1 col-form-label" for="text-input">Mã văn bản:</label>
+              <div class="col-md-2">
+                <ng-select2
+                [data]="documentCodeList"
+                [placeholder]="'Chọn mã văn bản...'"
+                [options]="options"
+                [(ngModel)]="documentCodeArr"
+                (valueChanged)="getFilterOptions(userNameArr, $event, fromDate, endDate)"
+            ></ng-select2>
+            </div>
+            
+            <label class="col-md-1 col-form-label" for="text-input">Ngày bắt đầu:</label>
+            <div class="col-md-2">
+              <input type="date" id="text-input" name="fromDate" [(ngModel)]="fromDate" class="form-control" (ngModelChange)="getFilterOptions(types, documentCodeArr, $event, endDate)">
+            </div>
+            <label class="col-md-1 col-form-label" for="text-input">Ngày kết thúc:</label>
+            <div class="col-md-2">
+              <input type="date" id="text-input" name="endDate" [(ngModel)]="endDate" class="form-control" (ngModelChange)="getFilterOptions(types, documentCodeArr, fromDate, $event)">
+            </div>
+            <!-- <div style="margin-left:0px;margin-top: 9px;" class="col-md-6 col-lg-6">
+              <div style="float: left;">
+                <button class="btn btn-primary btn-sm" (click)="getFilterOptions(arrayUserValue)">
+                  <span class="fa fa-plus"></span>
+                  <span>
+                    Tìm kiếm
+                  </span>
+                </button>
+              </div>
+            </div> -->
+           
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th style="width: 3%;">STT </th>
+                <th style="width: 10%;">Mã định danh tài liệu</th>
+                <th style="width: 15%;">User</th>
+                <th style="width: 20%;">Thao tác</th>
+                <th style="width: 40%;">Nội dung</th>
+                <th style="width: 20%;">Ngày thực hiện</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let logActivity of logActivitys; index as i">
+                <td>{{ i+1 }}</td>
+                <td>{{ logActivity.maDinhDanh }}</td>
+                <td>
+                  <span *ngIf="logActivity.creatorName">
+                    Người cập nhật gần đây: <b>{{ logActivity.creatorName }}</b>
+                  </span>
+                  <br>
+                  <span *ngIf="logActivity.updatorName">
+                    Người tạo: <b>{{ logActivity.updatorName }}</b>
+                  </span>
+                </td>
+                <td>  
+                  <span *ngIf="logActivity.creatorName" class="badge badge-info">
+                    Thêm mới tài liệu
+                  </span>
+                  <span *ngIf="logActivity.updatorName" class="badge badge-secondary">
+                    Cập nhật tài liệu
+                  </span>
+                </td>
+                <td>
+                  - Số Thứ Tự VB: {{ logActivity.sttVanBan }}
+                  <br>
+                  - Ghi chú: {{ logActivity.content }}
+                </td>
+                <td>
+                  <span *ngIf="logActivity.createDate && logActivity.creatorName" class="badge badge-info">
+                    {{ logActivity.createDate.toString().split('T') | date: 'dd/MM/yyyy' }}
+                  </span>
+                  <span *ngIf="logActivity.updatorName && logActivity.updateDate" class="badge badge-danger">
+                    {{ logActivity.updateDate.toString().split('T') | date: 'dd/MM/yyyy' }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #example>
+  
+            </ng-template>
+            <nav>
+              <ul class="pagination">
+                <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPages($event)"></ngb-pagination>
+              </ul>
+              <ng-template #isUpdate>
+                  <span class="badge badge-danger" style="margin-top: 5px;">Chỉnh sửa tài liệu</span>
+              </ng-template>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--/.col-->

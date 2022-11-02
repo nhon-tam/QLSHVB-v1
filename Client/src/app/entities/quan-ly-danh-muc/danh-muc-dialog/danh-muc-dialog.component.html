@@ -1,0 +1,86 @@
+<form [formGroup]="form" (ngSubmit)="save()" enctype="multipart/form-data" class="form-horizontal">
+
+    <div class="modal-header bg-primary " aria-hidden="true" >
+        <div *ngIf="danhmuc.tabOfContID != null; else themMoi" style="text-align: center;">
+            <h4 class="modal-title">Chỉnh sửa mục lục</h4>
+ 
+        </div>
+
+        <ng-template #themMoi>
+            <h4 class="modal-title" >Thêm mới mục lục</h4>
+
+        </ng-template>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!-- <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Mã danh mục <span style="color: red;">(*)</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="tabOfContCode" placeholder="Nhập mã danh mục" name="tabOfContCode" [(ngModel)]="danhmuc.tabOfContCode" class="form-control" [ngClass]="{'is-invalid': submitted && f.tabOfContCode.errors}" />
+                <div *ngIf="submitted && f.tabOfContCode.errors" class="invalid-feedback">
+                  <div *ngIf="f.tabOfContCode.errors.required">Mã danh mục không được để trống.</div>
+                </div>
+            </div>
+        </div> -->
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="select1">Phông  <span style="color: red;">(*)</span></label>
+            <div class="col-md-9">
+              <ng-select2
+                formControlName="fontID"
+                [data]="lstFont"
+                [placeholder]="'Chọn phông...'"
+                [options]="options"
+                name="fontID"
+                [(ngModel)]="danhmuc.fontID"
+                (valueChanged)="getFontNumberByFontID($event)"
+              ></ng-select2>
+              <div *ngIf="submitted && f.fontID.status == 'INVALID'">
+                <div class="error"><span style="color:red;">Vui lòng chọn phông.</span></div>
+              </div>
+            </div>
+          </div>
+      
+        <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="select1">Phông số:</label>
+        <div class="col-md-9">
+            <span>{{fontNumber}}</span>
+        </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Mục lục số <span style="color: red;">(*)</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="tabOfContNumber" placeholder="Nhập mục lục số" name="tabOfContNumber" [(ngModel)]="danhmuc.tabOfContNumber" class="form-control" [ngClass]="{'is-invalid': submitted && f.tabOfContNumber.errors}" />
+                <div *ngIf="submitted && f.tabOfContNumber.errors" class="invalid-feedback">
+                    <div *ngIf="f.tabOfContNumber.errors.required">Mục lục số không được để trống.</div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Tên mục lục <span style="color: red;">(*)</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="tabOfContName" placeholder="Nhập mã mục lục" name="tabOfContName" [(ngModel)]="danhmuc.tabOfContName" class="form-control" [ngClass]="{'is-invalid': submitted && f.tabOfContName.errors}" />
+                <div *ngIf="submitted && f.tabOfContName.errors" class="invalid-feedback">
+                    <div *ngIf="f.tabOfContName.errors.required">Tên mục lục không được để trống.</div>
+                </div>
+            </div>
+        </div> -->
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="textarea-input">Ghi chú</label>
+            <div class="col-md-9">
+                <textarea formControlName="note"  id="textarea-input" name="note" rows="9" class="form-control"
+                    [(ngModel)]="danhmuc.note"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

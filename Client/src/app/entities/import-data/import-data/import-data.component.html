@@ -1,0 +1,163 @@
+<div class="row" style="margin-top: 10px;">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header" style="background-color: white;">
+                <form [formGroup]="form" (onSubmit)="onSubmit()">
+                    <h4><i class="fa fa-file"></i> &nbsp;Import dữ liệu tài liệu</h4>
+                    <hr/>
+                    <div class="form-group row">
+                        <label class="col-md-1 col-form-label" for="organ-type">Chọn cơ quan: </label>
+                        <div class="col-md-3">
+                            <ng-select2
+                            formControlName="organID"
+                            [data]="organList"
+                            [placeholder]="'Chọn cơ quan...'"
+                            [options]="options"
+                            name="organID"
+                            [(ngModel)]="validImport.organID"
+                            ></ng-select2>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-1 col-form-label" for="organ-type">Chọn phông lưu trữ: </label>
+                        <div class="col-md-3">
+                            <ng-select2
+                            formControlName="fontID"
+                            [data]="fontList"
+                            [placeholder]="'Chọn phông lưu trữ...'"
+                            [options]="options"
+                            name="fontID"
+                            [(ngModel)]="validImport.fontID"
+                            ></ng-select2>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label class="col-form-label" for="text-input">Chọn tệp dữ liệu: <span style="color:red">(*)</span></label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <mat-card-content>
+               
+                                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" (change)="fileInputChange(uploader.queue)"/><br/>
+                                        <br>
+                                        <div *ngIf="uploader.queue.length != 0">
+                                            <label>Bạn vừa chọn <b>{{ uploader.queue.length }}</b> file.</label>
+                                            <table class="table table-bordered table-striped table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="70%">
+                                                            Tên file
+                                                        </th>
+                                                        <th width="30%">
+                                                            File size
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of uploader.queue">
+                                                        <th width="70%">
+                                                            <span style="color: #ff6565;">{{ item.file.name }}</span>
+                                                        </th>
+                                                        <th width="30%">
+                                                            <span style="color: #ff6565;">({{ item.file.size/1000000 }} MB)</span>
+                                                        </th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br>
+                                    </mat-card-content>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <button type="submit" (click)="validFileUpload()" class="btn btn-primary btn-md">
+                                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                        <span>
+                                            Kiểm tra dữ liệu
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <div style="padding-left: 0px; margin-left:0px;margin-top: 9px;">
+                <button style="float: right;margin-bottom: 5px;margin-left: 8px;" class="btn btn-primary btn-sm" (click)="downloadImportTemplate()">
+                    <span class="fa fa-download"></span>
+                    <span>Tải xuống file mẫu</span>
+                </button>
+                <button *ngIf="validSuccessfully" style="float: right; margin-bottom: 5px;" class="btn btn-primary btn-sm" (click)="save()">
+                    <span class="fa fa-plus"></span>
+                    <span>Lưu</span>
+                </button>
+            </div>
+            <table class="table table-bordered table-striped table-sm">
+              <ngx-spinner name="paging">
+                <br>
+                <p class="loading" style="color: blue;"></p>
+              </ngx-spinner>
+              <thead>
+                <tr>
+                    <th>Dòng số</th>
+                    <th>Dữ liệu</th>
+                    <th>Loại dữ liệu</th>
+                    <th>Thông báo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background-color: #ff8834;" *ngFor="let item of dataValidations">
+                    <td>
+                        <span>
+                            {{item.rowNumber}}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="item.dataType == 0">
+                        </span>
+                        <span *ngIf="item.dataType != 0">
+                            {{item.value}}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="item.dataType == 0">
+                            Số TT
+                        </span>
+                        <span *ngIf="item.dataType == 1">
+                            Số ký hiệu
+                        </span>
+                        <span *ngIf="item.dataType == 2">
+                            Ngày tháng
+                        </span>
+                        <span *ngIf="item.dataType == 3">
+                            Tên gọi và trích yếu
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngIf="!item.isisCorrect">
+                            {{item.message}}
+                        </span>
+                    </td>
+                    </tr>
+              </tbody>
+            </table>
+            <nav>
+                <ul class="pagination">
+                    <div *ngIf="totalRecords > 0 else nondata">
+                    <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [maxSize]="10" [pageSize]="pageSize" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPages(page, pageSize)"></ngb-pagination>
+                    </div>
+                    <ng-template #nondata>
+                    <div>Không có dữ liệu phù hợp.</div>
+                    </ng-template>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
