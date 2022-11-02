@@ -1,0 +1,112 @@
+<div class="row" style="margin-top: 10px;">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <ngx-spinner name="dataTable">
+          <br>
+          <p class="loading" style="color: blue;">Đang tải dữ liệu, vui lòng chờ...</p>
+      </ngx-spinner>
+      <ngx-spinner name="filterOptions">
+        <br>
+      </ngx-spinner>
+        <h4><i class="fa fa-folder"></i> &nbsp;Quản lý Hồ sơ</h4>
+        <!-- <app-them-moi-phong actionType="Thêm mới" iconClass="fa fa-plus" btnClass="btn btn-primary btn-sm"></app-them-moi-phong> -->
+        <hr/>
+        <div class="form-group row">
+          <label class="col-md-1 col-form-label" for="text-input">Mã hồ sơ: </label>
+          <div class="col-md-2">
+            <ng-select2
+            [data]="profileIdFilter"
+            [placeholder]="'Chọn mã hồ sơ...'"
+            [options]="options"
+            [(ngModel)]="arrayIdValue"
+            (valueChanged)="getFilterOptions($event, arrayTitleValue, arrayGearBoxValue)"
+        ></ng-select2>
+          </div>
+          <label class="col-md-1 col-form-label" for="text-input">Tên hồ sơ: </label>
+          <div class="col-md-3">
+            <ng-select2
+            [data]="profileNameFilter"
+            [placeholder]="'Chọn tên hồ sơ...'"
+            [options]="options"
+            [(ngModel)]="arrayTitleValue"
+            (valueChanged)="getFilterOptions(arrayIdValue, $event, arrayGearBoxValue)"
+        ></ng-select2>
+          </div>
+          <label class="col-md-1 col-form-label"  for="text-input">Hộp số: </label>
+          <div class="col-md-2">
+            <ng-select2
+            [data]="gearBoxIdFilter"
+            [placeholder]="'Chọn hộp số...'"
+            [options]="options"
+            [(ngModel)]="arrayGearBoxValue"
+            (valueChanged)="getFilterOptions(arrayIdValue, arrayTitleValue, $event)"
+        ></ng-select2>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-sm btn-primary " style="float: right; margin-top: 4px;" (click)="openDialog()">
+              <span class="fa fa-plus"></span>
+              <span>
+                Thêm mới hồ sơ
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <ngx-spinner name="paging">
+            <br>
+            <p class="loading" style="color: blue;"></p>
+          </ngx-spinner>
+          <thead>
+            <tr>
+              <th>Hộp số</th>
+              <th>Mã hồ sơ</th>
+              <th>Tiêu đề</th>
+              <th>Loại hồ sơ</th>
+              <th>Thời hạn bảo quản</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of lstHoSo">
+              <td> {{ item.gearBoxCode }}</td>
+              <td> {{ item.fileCode }}</td>
+              <td> {{ item.title }}</td>
+              <td> {{ item.profileTypeName }}</td>
+              <td> {{ item.maintenance }}</td>
+              <td *ngIf="item.status == 1 else inactive">
+                <span class="badge badge-success">Hoàn thành</span>
+              </td>
+              <td style="width:137px" class="center">
+                <button class="btn btn-primary fa fa-eye" [routerLink]="['/QuanLyHoSo/hoSo', item.profileId]"
+                  routerLinkActive="router-link-active"></button>
+                
+                <button class="btn btn-primary fa fa-edit" (click)="openDialog(item.profileId)" replaceUrl="true"
+                  queryParamsHandling="merge"></button>
+                <!-- <button class="btn btn-primary fa fa-trash" (click)="openDeleteDialog()"></button> -->
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination">
+              <div *ngIf="totalRecords > 0 else nondata">
+                <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [maxSize]="5" [pageSize]="pageSize" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPages(page)"></ngb-pagination>
+              </div>
+              <ng-template #nondata>
+                <div>Không có dữ liệu phù hợp.</div>
+              </ng-template>
+              <ng-template #inactive>
+                <td>
+                <span class="badge badge-danger" style="margin-top: 5px;">Chưa hoàn thành</span>
+              </td>
+              </ng-template>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>

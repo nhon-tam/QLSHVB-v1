@@ -1,0 +1,119 @@
+
+
+<form [formGroup]="form" (ngSubmit)="save()" enctype="multipart/form-data" class="form-horizontal">
+    <div class="modal-header bg-primary" aria-hidden="true">
+      <div *ngIf="user.id != null; else themMoi">
+        <h4 class="modal-title">Chỉnh sửa thông tin tài khoản</h4>
+      </div>
+      <ng-template #themMoi>
+        <h4 class="modal-title">Thêm mới tài khoản</h4>
+      </ng-template>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">Tên tài khoản <span style="color: red;">(*)</span></label>
+        <div class="col-md-9">
+          <input type="text" formControlName="userName" placeholder="Nhập tên tài khoản" name="userName" [(ngModel)]="user.userName" class="form-control" [ngClass]="{'is-invalid': submitted && f.userName.errors}" />
+          <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+            <div *ngIf="f.userName.errors.required">Tên tài khoản không được để trống.</div>
+            <div *ngIf="f.userName.errors.minlength">Tài khoản phải lớn hơn 6 ký tự.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">Mật khẩu</label>
+        <div class="col-md-9">
+          <div *ngIf="user.id != null; else nonData">
+            <input type="password" formControlName="passwordNew" placeholder="Nhập mật khẩu mới" name="passwordNew" [(ngModel)]="user.passwordNew" class="form-control" />
+            <div *ngIf="f.passwordNew.errors?.minlength"><p style="color:red">Mật khẩu phải lớn hơn 6 ký tự.</p></div>
+          </div>
+          <ng-template #nonData>
+            <input type="password" formControlName="passwordNew" placeholder="Nhập mật khẩu" name="passwordNew" [(ngModel)]="user.passwordNew" class="form-control" [ngClass]="{'is-invalid': submitted && f.passwordNew.errors}"/>
+            <div *ngIf="submitted && f.passwordNew.errors" class="invalid-feedback">
+              <div *ngIf="f.passwordNew.errors.required">Mật khẩu không được để trống.</div>
+              <div *ngIf="f.passwordNew.errors.minlength">Mật khẩu phải lớn hơn 6 ký tự.</div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">Nhập lại mật khẩu</label>
+        <div class="col-md-9">
+          <div *ngIf="user.id != null; else nonDataCF">
+            <input type="password" formControlName="confirmPassword" placeholder="Nhập lại mật khẩu mới" name="confirmPassword" [(ngModel)]="user.confirmPassword" class="form-control" />
+            <div *ngIf="f.confirmPassword.errors?.minlength"><p style="color:red">Mật khẩu phải lớn hơn 6 ký tự.</p></div>
+            <div *ngIf="f.confirmPassword.errors?.mustMatch"><p style="color:red">Nhập lại mật khẩu phải được trùng khớp với mật khẩu.</p></div>
+          </div>
+          <ng-template #nonDataCF>
+            <input type="password" formControlName="confirmPassword" placeholder="Nhập lại mật khẩu" name="confirmPassword" [(ngModel)]="user.confirmPassword" class="form-control" [ngClass]="{'is-invalid': submitted && f.confirmPassword.errors}"/>
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.confirmPassword.errors.required">Nhập lại mật khẩu không được để trống.</div>
+              <div *ngIf="f.confirmPassword.errors.minlength">Mật khẩu phải lớn hơn 6 ký tự.</div>
+              <div *ngIf="f.confirmPassword.errors.mustMatch">Nhập lại mật khẩu phải được trùng khớp với mật khẩu.</div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="select1">Nhóm quyền <span style="color: red;">(*)</span></label>
+        <div class="col-md-9">
+          <ng-select2
+            formControlName="roleID"
+            [data]="lstRole"
+            [placeholder]="'Chọn nhóm quyền...'"
+            [options]="optionTypes"
+            name="roleID"
+            [(ngModel)]="user.roleID"
+          ></ng-select2>
+          <div *ngIf="submitted && f.roleID.status == 'INVALID'">
+            <div class="error"><span style="color:red;">Vui lòng chọn nhóm quyền.</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="user.roles == 0" class="form-group row">
+        <label class="col-md-3 col-form-label" for="select1">Quyền</label>
+        <div class="col-md-9">
+            <div class="custom-control custom-checkbox">
+                <div style="display: inline-block; margin-right: 40px;">
+                    <input type="checkbox" class="custom-control-input" id="customCheckCreate"  name="create" (change)="onChangeCreateRole($event.target.checked)" [disabled]="create">
+                    <label class="custom-control-label" for="customCheckCreate">Nhập tài liệu</label>
+                </div>
+                <div style="display: inline-block;">
+                    <input type="checkbox" class="custom-control-input" id="customCheckEdit"  name="edit" (change)="onChangeEditRole($event.target.checked)" [disabled]="edit">
+                    <label class="custom-control-label" for="customCheckEdit">Sửa tài liệu</label>
+                </div>
+                
+            </div>
+        </div>
+      </div> -->
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="select1">Trạng thái</label>
+        <div class="col-md-9">
+          <select formControlName="status" id="select2" name="select2" class="custom-select" [(ngModel)]="user.status" required>
+            <span *ngIf="user.status == 0; then thenBlock else elseBlock"></span>
+            <ng-template #thenBlock>
+              <option value="0" selected>Không hoạt động</option>
+              <option value="1">Hoạt động</option>
+            </ng-template>
+            <ng-template #elseBlock>
+              <option value="0">Không hoạt động</option>
+              <option value="1" selected>Hoạt động</option>
+            </ng-template>
+          </select>
+        </div>
+      </div>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="clear()">
+        <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+      </button>
+      <button type="submit" class="btn btn-primary">
+        <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+      </button>
+    </div>
+  </form>
+  

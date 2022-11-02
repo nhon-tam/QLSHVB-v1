@@ -1,0 +1,167 @@
+<div class="row" style="margin-top: 10px;">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header" aria-hidden="true">
+                <div *ngIf="document">
+                    <h4 class="modal-title">Chi tiết tài liệu</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Cơ quan:</label>
+                    <div class="col-md-9">
+                        <span>{{document.organName}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Mã hồ sơ:</label>
+                    <div class="col-md-9">
+                        <span>{{document.fileCode}}</span>
+                    </div>
+                </div>
+                <!-- <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Số thứ tự tài liệu trong hồ sơ:</label>
+                    <div class="col-md-9">
+                        <span>{{document.docOrdinal}}</span>
+                    </div>
+                </div> -->
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Mã định danh tài liệu:</label>
+                    <div class="col-md-9">
+                        <span>{{document.documentCode}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Tên loại tài liệu:</label>
+                    <div class="col-md-9">
+                        <span>{{document.typeName}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ngày tháng năm tài liệu:</label>
+                    <div class="col-md-9">
+                        <span>{{document.issuedDate}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Số tài liệu:</label>
+                    <div class="col-md-9">
+                        <span>{{document.codeNumber}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ký hiệu tài liệu</label>
+                    <div class="col-md-9">
+                        <span>{{document.codeNotation}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Trích yếu nội dung:</label>
+                    <div class="col-md-9">
+                        <span>{{document.subject}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ngôn ngữ:</label>
+                    <div class="col-md-9">
+                        <span>{{document.language}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Số tờ:</label>
+                    <div class="col-md-9">
+                        <span>{{document.pageAmount}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ký hiệu thông tin:</label>
+                    <div class="col-md-9">
+                        <span>{{document.inforSign}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Từ khóa:</label>
+                    <div class="col-md-9">
+                        <span>{{document.keyword}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Chế độ sử dụng:</label>
+                    <div class="col-md-9">
+                        <span>{{document.mode}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="inline-radios">Mức độ tin cậy:</label>
+                    <div class="col-md-9 col-form-label">
+                        <span>{{document.confidenceLevel}}</span>
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="inline-radios">Tình trạng vật lý:</label>
+                    <div class="col-md-9 col-form-label">
+                        <span>{{document.format}}</span>
+
+                    </div>
+                </div>
+                  
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="inline-radios">Bút tích:</label>
+                    <div class="col-md-9 col-form-label">
+                        <span>{{document.autograph}}</span>
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Cơ quan, tổ chức ban hành:</label>
+                    <div class="col-md-9">
+                        <span>{{document.organizationIssued}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ghi chú:</label>
+                    <div class="col-md-9">
+                        <span>{{document.description}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Người thêm mới:</label>
+                    <div class="col-md-9">
+                        <span>{{document.createdBy}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ngày thêm mới:</label>
+                    <div class="col-md-9">
+                        <span>{{document.createdDate}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Người chỉnh sửa:</label>
+                    <div class="col-md-9">
+                        <span>{{document.updatedBy}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ngày chỉnh sửa:</label>
+                    <div class="col-md-9">
+                        <span>{{document.updatedDate}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="inline-radios">File đính kèm:</label>
+                    <div class="col-md-9 col-form-label">
+                        <span><a (click)="downloadFile(document.computerFileId);">{{document.computerFileName}}</a></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="inline-radios">Tải xuống tệp đính kèm :</label>
+                    <div class="col-md-9 col-form-label">
+                        <button class="btn btn-primary fa fa-download" (click)="downloadFile(document.computerFileId, document.computerFileName)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
