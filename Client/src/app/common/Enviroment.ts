@@ -1,9 +1,9 @@
 import { HttpHeaders } from '@angular/common/http';
 
 export const ApiUrl = {
-    apiUrl: "https://localhost:44357/api/",
+    apiUrl: "https://localhost:5000/api/",
     //apiUrl: "http://123.31.20.153:8080/api/",
-    endpoint: "https://localhost:44357",
+    endpoint: "https://localhost:5000",
     //endpoint: "http://123.31.20.153:8080",
     prod: true
 };
