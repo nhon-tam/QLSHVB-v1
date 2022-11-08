@@ -1,6 +1,7 @@
-using DocumentManagement.Common.Utils;
+﻿using DocumentManagement.Common.Utils;
 using DocumentManagement.Services.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -15,9 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IFileService, FileService>();
 builder.Services.AddSingleton<IMultipartRequestHelperService, MultipartRequestHelper>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(x =>
+    .AddJwtBearer(options =>
     {
-        x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
         {
             RequireExpirationTime = true,
             ValidateIssuerSigningKey = true,

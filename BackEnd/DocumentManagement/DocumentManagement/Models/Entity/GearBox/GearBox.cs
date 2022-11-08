@@ -9,22 +9,22 @@ namespace DocumentManagement.Model.Entity.GearBox
     {
         public int GearBoxID { get; set; }
         public int TabOfContID { get; set; }
-        public string TabOfContCode { get; set; }
-        public string TabOfContNumber { get; set; }
-        public string TableOfContName { get; set; }
-        public string GearBoxName { get; set; }
-        public string GearBoxTitle { get; set; }
+        public string? TabOfContCode { get; set; }
+        public string? TabOfContNumber { get; set; }
+        public string? TableOfContName { get; set; }
+        public string? GearBoxName { get; set; }
+        public string? GearBoxTitle { get; set; }
         public float Preservationperiod { get; set; }
         public int ProfileCount { get; set; }
         public int NumDoc { get; set; }
         public int DocCount { get; set; }
-        public string ProfileCode { get; set; }
+        public string? ProfileCode { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
-        public string Note { get; set; }
-        public string FontName { get; set; }
-        public string OrganName { get; set; }
-        public string GearBoxCode { get; set; }
+        public string? Note { get; set; }
+        public string? FontName { get; set; }
+        public string? OrganName { get; set; }
+        public string? GearBoxCode { get; set; }
         public int isDeleted { get; set; }
         public int FontID { get; set; }
         public int OrganID { get; set; }

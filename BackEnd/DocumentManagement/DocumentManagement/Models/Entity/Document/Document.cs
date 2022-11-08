@@ -57,7 +57,7 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Chế độ sử dụng
         /// </summary>
-        public string Mode { get; set; }
+        public string? Mode { get; set; }
         public int ConfidenceLevelId { get; set; }
         /// <summary>
         /// Bút tích

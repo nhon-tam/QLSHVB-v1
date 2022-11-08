@@ -8,6 +8,6 @@ namespace DocumentManagement.Models.Entity.Category
     public class TinhTrangVatLy
     {
         public int TinhTrangVatLyId { get; set; }
-        public string TinhTrang { get; set; }
+        public string? TinhTrang { get; set; }
     }
 }

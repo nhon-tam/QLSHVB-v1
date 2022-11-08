@@ -7,8 +7,8 @@ namespace DocumentManagement.Models.Entity.Profile
 {
     public class ProfileFilterOptions
     {
-        public List<string> lstFileCode = new List<string>();
-        public List<string> lstTitle = new List<string>();
-        public List<string> lstGearBoxCode = new List<string>();
+        public List<string?>? lstFileCode {get; set;}
+        public List<string?>? lstTitle { get; set; }
+        public List<string?>? lstGearBoxCode { get; set; }
     }
 }

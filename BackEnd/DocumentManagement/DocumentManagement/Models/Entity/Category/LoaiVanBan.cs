@@ -8,6 +8,6 @@ namespace DocumentManagement.Models.Entity.Category
     public class LoaiVanBan
     {
         public int LoaiVanBanID { get; set; }
-        public string TenLoaiVanBan { get; set; }
+        public string? TenLoaiVanBan { get; set; }
     }
 }

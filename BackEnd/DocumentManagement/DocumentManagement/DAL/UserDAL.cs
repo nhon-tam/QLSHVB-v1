@@ -160,7 +160,7 @@ namespace DocumentManagement.DAL
         {
             AuthenticationHelper _authenticationHelper = new AuthenticationHelper();
             string passwordSalt = _authenticationHelper.RamdomString(5);
-            string password = _authenticationHelper.GetMd5Hash(passwordSalt + user.PasswordNew);
+            string password = _authenticationHelper.GetMd5Hash(passwordSalt + user.Password);
             user.Password = password;
             user.PasswordSalt = passwordSalt;
             DbProvider provider = new DbProvider();

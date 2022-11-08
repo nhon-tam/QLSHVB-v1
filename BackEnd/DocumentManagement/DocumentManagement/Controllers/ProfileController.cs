@@ -513,12 +513,14 @@ namespace DocumentManagement.Controllers
         public IActionResult GetAllProfiles()
         {
             ReturnResult<Profiles> result = profileBUS.GetAllProfiles();
-            return Ok(new ProfileFilterOptions()
+            var profileFilterOption = new ProfileFilterOptions()
             {
                 lstFileCode = result.ItemList.Select(item => item.FileCode).Distinct().ToList(),
                 lstTitle = result.ItemList.Select(item => item.Title).Distinct().ToList(),
                 lstGearBoxCode = result.ItemList.Select(item => item.GearBoxCode).Distinct().ToList()
-            });
+            };
+
+            return Ok(profileFilterOption);
         }
 
         [HttpGet]

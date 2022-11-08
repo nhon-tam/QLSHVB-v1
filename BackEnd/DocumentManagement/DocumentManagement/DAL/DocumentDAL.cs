@@ -251,7 +251,7 @@ namespace DocumentManagement.DAL
             string outMessage = String.Empty;
             var resultList = new List<Document>();
             dbProvider.SetQuery("DOCUMENT_GET_LIST_BY_PROFILE_ID", CommandType.StoredProcedure)
-                .SetParameter("ProfileId", SqlDbType.Int, profile.ProfileID, ParameterDirection.Input)
+                .SetParameter("ProfileId", SqlDbType.Int, profile.ProfileId, ParameterDirection.Input)
                 .SetParameter("ErrorCode", SqlDbType.NVarChar, DBNull.Value, 100, ParameterDirection.Output)
                 .SetParameter("ErrorMessage", SqlDbType.NVarChar, DBNull.Value, 4000, ParameterDirection.Output)
                 .GetList(out resultList)

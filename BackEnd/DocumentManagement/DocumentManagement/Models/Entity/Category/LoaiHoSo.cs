@@ -8,6 +8,6 @@ namespace DocumentManagement.Models.Entity.Category
     public class LoaiHoSo
     {
         public int LoaiHoSoID { get; set; }
-        public string TenLoaiHoSo { get; set; }
+        public string? TenLoaiHoSo { get; set; }
     }
 }

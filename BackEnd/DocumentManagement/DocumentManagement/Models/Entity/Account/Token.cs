@@ -7,7 +7,7 @@ namespace DocumentManagement.Models.Entity.Account
 {
     public class Token
     {
-        public string JwtToken { get; set; }
-        public DateTime Expiration { get; set; }
+        public string? JwtToken { get; set; }
+        public DateTime? Expiration { get; set; }
     }
 }

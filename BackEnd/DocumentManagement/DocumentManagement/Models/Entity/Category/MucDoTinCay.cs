@@ -8,6 +8,6 @@ namespace DocumentManagement.Models.Entity.Category
     public class MucDoTinCay
     {
         public int MucDoTinCayID { get; set; }
-        public string LoaiMucDoTinCay { get; set; }
+        public string? LoaiMucDoTinCay { get; set; }
     }
 }

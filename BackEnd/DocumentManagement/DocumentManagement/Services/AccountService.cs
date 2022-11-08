@@ -17,7 +17,7 @@ namespace DocumentManagement.Services
     {
         public Token CreateToken()
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("soHoav1soHoav1soHoav1soHoav1"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("soHoavbsoHoavbsoHoavbsoHoavb"));
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256),
