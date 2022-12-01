@@ -17,7 +17,7 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Ký hiệu của văn bản
         /// </summary>
-        public string CodeNotation { get; set; }
+        public string? CodeNotation { get; set; }
         /// <summary>
         /// Ngày, tháng, năm văn bản
         /// </summary>
@@ -26,6 +26,6 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Nội dung
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
     }
 }

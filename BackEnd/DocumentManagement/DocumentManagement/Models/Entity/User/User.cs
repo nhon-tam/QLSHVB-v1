@@ -15,7 +15,7 @@ namespace DocumentManagement.Models.Entity.User
         public DateTime? CreateDate { get; set; }
         public string? UpdatedBy {get; set;}
         public DateTime? UpdatedDate { get; set; }
-        public int? Status { get; set; }
+        public int Status { get; set; }
         public Token? Token { get; set; }
         public int? RoleID { get; set; }
         public string? UserRole { get; set; }
