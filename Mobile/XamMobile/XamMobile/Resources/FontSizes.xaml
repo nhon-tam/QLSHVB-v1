@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <OnPlatform x:Key="FontSizeXSmall" x:TypeArguments="x:Double"  Android="12" iOS="8" />
+    <OnPlatform x:Key="FontSizeSmall" x:TypeArguments="x:Double"  Android="14" iOS="10" />
+    <OnPlatform x:Key="FontSizeNormal" x:TypeArguments="x:Double"  Android="16" iOS="12" />
+    <OnPlatform x:Key="FontSizeLarge" x:TypeArguments="x:Double"  Android="18" iOS="14" />
+    <OnPlatform x:Key="FontSizeXLarge" x:TypeArguments="x:Double"  Android="20" iOS="16" />
+</ResourceDictionary>

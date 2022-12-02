@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ced76eaf07043f695532b4f8577d6d6" Name="Diagram1">
+        <EntityTypeShape EntityType="SoHoaModel.AccessToken" Width="1.5" PointX="8.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.CommonStatu" Width="1.5" PointX="16.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.DiaChi" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.DigitalSignature" Width="1.5" PointX="10.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.Huyen" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.NgonNgu" Width="1.5" PointX="16.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Authority" Width="1.5" PointX="3.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_ComputerFile" Width="1.5" PointX="16.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_CoQuan" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_HopSo" Width="1.5" PointX="12" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_HoSo" Width="1.5" PointX="14.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Kho" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_LoaiCoQuan" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_LoaiHoSo" Width="1.5" PointX="12" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_LoaiVanBan" Width="1.5" PointX="16.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_LuuTru" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Menu" Width="1.5" PointX="3.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_MucDoTinCay" Width="1.5" PointX="16.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_MucLucHoSo" Width="1.5" PointX="9.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Page" Width="1.5" PointX="8.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Phong" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Role" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Role_URL" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_TinhTrangVatLy" Width="1.5" PointX="16.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Uers_Atuthority" Width="1.5" PointX="6" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_User_Role" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_Users" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.S_VanBan" Width="1.5" PointX="18.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.Tinh" Width="1.5" PointX="12.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoHoaModel.XaPhuong" Width="1.5" PointX="10.75" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="SoHoaModel.FK_S_VanBan_CommonStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_CoQuan_DiaChi" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_VanBan_NgonNgu" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_Role_Uers_Atuthority__S_Authority" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_ComputerFile_S_HoSo" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_VanBan_S_ComputerFile" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_CoQuan_S_LoaiCoQuan1" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_Phong_S_CoQuan" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_HopSo_S_MucLucHoSo" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_HoSo_S_HopSo" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_HoSo_S_LoaiHoSo" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_VanBan_S_HoSo" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_LuuTru_S_Kho1" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_VanBan_S_LoaiVanBan" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_LuuTru_S_Phong1" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_MucLucHoSo_S_LuuTru" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_Role_URL_S_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_VanBan_S_MucDoTinCay" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_Page_S_Role_Uers_Atuthority_" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_Role_URL_S_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_User_Role_S_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_VanBan_S_TinhTrangVatLy" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_Role_Uers_Atuthority__S_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="SoHoaModel.FK_S_User_Role_S_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SoHoaModel.NhatKy" Width="1.5" PointX="21" PointY="4.5" />
+        <EntityTypeShape EntityType="SoHoaModel.sysdiagram" Width="1.5" PointX="13.375" PointY="12.75" />
+        <AssociationConnector Association="SoHoaModel.FK_NhatKy_S_VanBan" />
+        <EntityTypeShape EntityType="SoHoaModel.S_NhanVien" Width="1.5" PointX="3" PointY="23.375" />
+        <AssociationConnector Association="SoHoaModel.FK_S_NhanVien_S_Users" />
+        <EntityTypeShape EntityType="SoHoaModel.FileUpload" Width="1.5" PointX="13.375" PointY="15.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

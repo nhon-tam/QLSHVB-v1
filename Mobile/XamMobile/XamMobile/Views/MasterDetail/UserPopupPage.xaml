@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:customcontrols="clr-namespace:XamMobile.CustomControls"
+    x:Class="XamMobile.Views.MasterDetail.UserPopupPage">
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+    <Frame CornerRadius="20" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20,0,20,0" Padding="20, 20, 20, 20">
+        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  HeightRequest="500" BackgroundColor="White">
+                <Grid Margin="0, 0, 0, 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Thông tin nhân viên" TextColor="{StaticResource MainColor}" FontSize="20" HorizontalOptions="Center"></Label>
+                    <StackLayout Grid.Column="1">
+                        <Button
+                    BackgroundColor="Transparent"
+                    Clicked="OnPopupClose"
+                    CommandParameter="{Binding .}"
+                    VerticalOptions="Start"
+                    WidthRequest="20" HeightRequest="45"
+                    ImageSource="close_red_icon.png" />
+                    </StackLayout>
+                </Grid>
+                <BoxView HeightRequest=".75" BackgroundColor="{StaticResource LightGray}" HorizontalOptions="FillAndExpand" />
+                <ScrollView>
+                    <StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
+                            <Label Text="Họ Tên"></Label>
+                            <customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.TenNhanVien}" Placeholder="Họ tên" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>
+                            <!--<customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.NgaySinhStr}" Placeholder="Ngày sinh" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>-->
+                            <StackLayout Orientation="Horizontal">
+                                <Label VerticalOptions="Center" Text="Ngày sinh"></Label>
+                                <DatePicker HorizontalOptions="EndAndExpand" Date="{Binding CurrentData.NgaySinh}"></DatePicker>
+                            </StackLayout>
+                            <Label Text="Giới tính"></Label>
+                            <customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.GioiTinhStr}" Placeholder="Giới tính" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>
+                            <Label Text="Số CMT"></Label>
+                            <customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.SoCMT}" Placeholder="Số CMT" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>
+                            <StackLayout Orientation="Horizontal">
+                                <Label VerticalOptions="Center" Text="Ngày cấp"></Label>
+                                <DatePicker HorizontalOptions="EndAndExpand" Date="{Binding CurrentData.NgayCap}"></DatePicker>
+                            </StackLayout>
+                            <Label Text="Nơi cấp"></Label>
+                            <customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.NoiCap}" Placeholder="Nơi cấp" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>
+                            <Label Text="Quê quán"></Label>
+                            <customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.NguyenQuan}" Placeholder="Quê quán" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>
+                            <Label Text="Số điện thoại"></Label>
+                            <customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.SoDienThoai}" Placeholder="Số điện thoại" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>
+                            <Label Text="Email"></Label>
+                            <customcontrols:CustomEntry TextColor="Gray" Text="{Binding CurrentData.Email}" Placeholder="Email" HorizontalOptions="FillAndExpand"  PlaceholderColor="Silver" ></customcontrols:CustomEntry>
+                        </StackLayout>
+                        <!--<ActivityIndicator Color="{StaticResource MainColor}" IsRunning="True"></ActivityIndicator>-->
+                        <BoxView HeightRequest=".75" BackgroundColor="{StaticResource LightGray}" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout AbsoluteLayout.LayoutBounds=".5,1,.5,.1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Horizontal">
+                    <Button BackgroundColor="WhiteSmoke" TextColor="{StaticResource MainColor}" Clicked="OnPopupClose" HorizontalOptions="EndAndExpand" Command="{Binding SaveNhanVienCommand}" Text="Lưu"></Button>
+                    <Button BackgroundColor="WhiteSmoke" HorizontalOptions="End" Clicked="OnPopupClose" Text="Hủy"></Button>
+                </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+    </Frame>
+</pages:PopupPage>
