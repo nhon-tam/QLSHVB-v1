@@ -3,8 +3,11 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using LabelHtml.Forms.Plugin.Droid;
+using Plugin.CurrentActivity;
 using Plugin.LocalNotification;
+using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
 
@@ -24,8 +27,9 @@ namespace XamMobile.Droid
             UserDialogs.Init(this);
             HtmlLabelRenderer.Initialize();
             Rg.Plugins.Popup.Popup.Init(this, bundle);
-
+            CrossCurrentActivity.Current.Activity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::Xamarin.Essentials.Platform.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
             Instance = this;
             NotificationCenter.NotifyNotificationTapped(Intent);
@@ -35,6 +39,12 @@ namespace XamMobile.Droid
         {
             NotificationCenter.NotifyNotificationTapped(intent);
             base.OnNewIntent(intent);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

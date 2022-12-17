@@ -22,23 +22,32 @@ namespace XamMobile.Droid.DependencyServices
     {
         public async Task<bool> RequestExternalPermssion()
         {
-            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-            if (status != PermissionStatus.Granted)
+            try
             {
-                if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (status != PermissionStatus.Granted)
                 {
-                    await UserDialogs.Instance.AlertAsync("Need Storage permission.").ConfigureAwait(false);
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
+                    {
+                        await UserDialogs.Instance.AlertAsync("Need Storage permission.").ConfigureAwait(false);
+                    }
+
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { (Permission.Storage) });
+                    status = results[(Permission.Storage)];
                 }
 
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { (Permission.Storage) });
-                status = results[(Permission.Storage)];
+                if (status == PermissionStatus.Granted)
+                {
+                    return true;
+                }
+                return false;
             }
-
-            if (status == PermissionStatus.Granted)
+            catch(Exception ex)
             {
-                return true;
+                await UserDialogs.Instance.AlertAsync("Something went wrong: " + ex.Message).ConfigureAwait(false);
+
+                return false;
             }
-            return false;
         }
     }
 }

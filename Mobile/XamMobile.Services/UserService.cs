@@ -72,7 +72,7 @@ namespace XamMobile.Services
                 AccessToken = authenResponse.AccessToken;
                 result.Code = ResponseCode.SUCCESS;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 result.Code = ResponseCode.ERROR;
                 return result;

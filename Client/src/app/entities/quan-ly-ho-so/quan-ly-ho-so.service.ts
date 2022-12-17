@@ -15,10 +15,10 @@ export class QuanLyHoSoService {
   constructor(private _httpClient: HttpClient, private authenticationService: AuthenticationService) { }
 
   public getHoSoById(id) {
-    
+
   };
   public getListVanBanByHoSoId (id: number) {
-    
+
   }
   public getProfileByGearBoxId(gearBoxId: string){
     return this._httpClient.get<ReturnResult<HoSo>>(ApiUrl.apiUrl + "Profile/GetProfileByGearBoxId/" + gearBoxId);
@@ -98,7 +98,7 @@ export class QuanLyHoSoService {
   public getComputerFilesByProfileId (id : any) {
     return this._httpClient.get<ReturnResult<FileUpload>>(ApiUrl.apiUrl + "Profile/GetComputerFileByProfileId/" + id);
   }
-  
+
   public GetListFilesByProfileId (condi?: BaseCondition<HoSo>) {
     var condition = {};
     if (condi != undefined) {
@@ -144,6 +144,6 @@ export class QuanLyHoSoService {
   filter(filterBy: string){
     this._listners.next(filterBy);
   }
-  
+
 
 }

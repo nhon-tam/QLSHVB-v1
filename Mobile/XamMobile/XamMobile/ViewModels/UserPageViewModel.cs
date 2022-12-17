@@ -97,10 +97,11 @@ namespace XamMobile.ViewModels
         {
             try
             {
+                await _permissionService.RequestExternalPermssion();
+
                 var fileData = await CrossFilePicker.Current.PickFile();
                 if (fileData == null)
                     return; // user canceled file picking
-
                 var fileName = fileData.FileName;
                 var contents = fileData.DataArray;
 

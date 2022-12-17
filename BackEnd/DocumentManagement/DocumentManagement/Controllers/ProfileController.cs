@@ -84,8 +84,7 @@ namespace DocumentManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> ProfilesAddNewAndUploadFile()
         {
-            IFormCollection form;
-            form = await Request.ReadFormAsync();
+            IFormCollection form = await Request.ReadFormAsync();
             object obj3 = Request.Form["profile"]; // object
             Profiles profile = Libs.DeserializeObject<Profiles>(obj3.ToString());
             ReturnResult<Profiles> result = new ReturnResult<Profiles>();
@@ -530,10 +529,11 @@ namespace DocumentManagement.Controllers
             //profileNew.lstGearBox = gearBoxBUS.GetAllGearBox().ItemList;
             //profileNew.lstProfileTypes = profileBUS.GetAllProfileTypes().ItemList;
             var gearBoxs = await gearBoxBUS.GetAllGearBox();
+            var lstProfileTypes = profileBUS.GetAllProfileTypes().ItemList;
             return Ok(new ProfileNew()
             {
-                lstGearBox = gearBoxs.ItemList,
-                lstProfileTypes = profileBUS.GetAllProfileTypes().ItemList
+                LstGearBox = gearBoxs.ItemList,
+                LstProfileTypes = lstProfileTypes
             });
         }
         /// <summary>

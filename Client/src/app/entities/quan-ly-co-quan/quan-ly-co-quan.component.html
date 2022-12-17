@@ -57,7 +57,7 @@
            </div>
         </div>
         <div class="card-body">
-          
+
           <table class="table table-bordered table-striped table-sm">
             <ngx-spinner name="paging">
               <br>
@@ -74,12 +74,12 @@
             </thead>
             <tbody>
               <tr *ngFor="let coquan of coquans; let count = index">
-                
+
                 <td>{{ coquan.coQuanID }}</td>
                 <td>{{ coquan.tenCoQuan }}</td>
                 <td>{{ coquan.addressDetail }}</td>
                 <td>{{ coquan.organType }}</td>
-               
+
                 <td style="width:137px" class="center">
                   <button class="btn btn-primary fa fa-eye" [routerLink]="['/QuanLyCoQuan/coQuan',coquan.coQuanID]" routerLinkActive="router-link-active"  ></button>
                   <!-- <app-them-moi-phong [data]="['nguyễn duy tú', 'nguyễn văn a']" btnClass="btn btn-primary fa fa-edit"></app-them-moi-phong> -->
@@ -103,4 +103,4 @@
     </ng-template>
     </div>
   </div>
-  
+

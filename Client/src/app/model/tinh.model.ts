@@ -3,6 +3,3 @@ export class Tinh {
         public provincialName: string
         public level: string
 }
-
-
-

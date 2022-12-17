@@ -8,6 +8,6 @@ namespace DocumentManagement.Models.Entity.Profile
     public class ProfileTypes
     {
         public int ProfileTypeId { get; set; }
-        public string ProfileTypeName { get; set; }
+        public string? ProfileTypeName { get; set; }
     }
 }

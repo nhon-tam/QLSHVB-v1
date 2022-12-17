@@ -65,7 +65,7 @@ namespace DocumentManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateDocument([FromBody] Document document, [FromQuery] string name = "", [FromQuery] string docPath = "")
+        public IActionResult UpdateDocument([FromBody] Document document, [FromQuery] string? name, [FromQuery] string? docPath)
         {
             DocumentBUS documentBUS = new DocumentBUS();
             bool hasSignature = false;

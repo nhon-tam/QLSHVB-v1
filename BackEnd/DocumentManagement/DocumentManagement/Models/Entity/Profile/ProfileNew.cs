@@ -8,7 +8,7 @@ namespace DocumentManagement.Models.Entity.Profile
 {
     public class ProfileNew
     {
-        public List<GearBox> lstGearBox = new List<GearBox>();
-        public List<ProfileTypes> lstProfileTypes = new List<ProfileTypes>();
+        public List<GearBox> LstGearBox { get; set; }
+        public List<ProfileTypes> LstProfileTypes { get; set; }
     }
 }

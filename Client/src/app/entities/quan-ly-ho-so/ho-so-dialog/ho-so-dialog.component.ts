@@ -17,6 +17,7 @@ import { Rights, Languages } from '../../../common/Variables';
 import { QuanLyHopSoService } from '../../quan-ly-hop-so/quan-ly-hop-so.service';
 import { QuanLyDanhMucService } from '../../quan-ly-danh-muc/quan-ly-danh-muc.service';
 import { QuanLyTaiLieuService } from '../../quan-ly-tai-lieu/quan-ly-tai-lieu.service';
+import { ProfileNew } from '../../../model/profile-new.model';
 
 @Component({
   selector: 'app-ho-so-dialog',
@@ -158,9 +159,9 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
       var formatList = [];
       for (var item of result.itemList) {
         var temp = { id: item.formatId, text: item.formatName }
-        formatList.push(temp);  
+        formatList.push(temp);
       }
-      
+
       this.physicalStates = formatList;
     },
     (error) => {
@@ -170,7 +171,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
       }, 1000);
     },
     () => {
-      
+
     });
   }
   getLanguages() {
@@ -181,7 +182,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
         var temp = { id: item.languageId, text: item.languageName }
         languageList.push(temp);
       }
-      
+
       this.languages = languageList;
     },
     (error) => {
@@ -191,13 +192,14 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
       }, 1000);
     },
     () => {
-      
+
     });
-    
+
   }
   uploadSubmit () {
     for (var i = 0; i < this.uploader.queue.length; i++) {
       let fileItem = this.uploader.queue[i]._file;
+      console.log(fileItem);
       if(fileItem.size > 100000000 && this.uploader.queue[i].isCancel) {
         alert("File nên có kích thước nhỏ hơn 100Mb.");
         return;
@@ -205,6 +207,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
     }
     var data = new FormData();
     for (var j = 0; j < this.uploader.queue.length; j++) {
+      console.log(j);
       if(this.uploader.queue[j].isCancel){
         let fileItem = this.uploader.queue[j]._file;
         data.append('files', fileItem);
@@ -212,13 +215,14 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
         data.append('dataType', fileItem.type.split('/')[1]);
       }
     }
+    console.log(data)
     return data;
   }
 
   clear() {
     this.activeModal.dismiss('cancel');
   }
-  
+
   save() {
     this.submitted = true;
     if (this.form.invalid) return;
@@ -254,7 +258,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
                       arrFileName.push(fileName);
                     }
                   }
-  
+
                   if (confirm(`Tồn tại file đã được upload trên hệ thống, chọn OK để tiến hành ghi đè file đã tồn tại bằng file mới, chọn Cancel để hủy bỏ.
                   \nDanh sách file đã tồn tại:\n${
                     arrFileName.toString().split(',').join('\n')
@@ -267,7 +271,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
                           this.isOverwrite = true;
                         }
                         else {
-                          this.toastr.error("Ghi đè file thất bại, vui lòng kiểm tra và thử lại.", "Thông báo"); 
+                          this.toastr.error("Ghi đè file thất bại, vui lòng kiểm tra và thử lại.", "Thông báo");
                         }
                       },
                       (error) => {
@@ -288,8 +292,8 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
                 break;
               }
               case "-3": { // EXISTS
-                this.toastr.warning("Đã tồn tại hồ sơ có mã hồ sơ: " 
-                + this.hoso.fileCode + 
+                this.toastr.warning("Đã tồn tại hồ sơ có mã hồ sơ: "
+                + this.hoso.fileCode +
                 " trên hệ thống, vui lòng thử lại hoặc bấm Cancel để hủy bỏ. Hoặc mở mục sửa thông tin hồ sơ để cập nhật file cho hồ sơ này!!!");
                 break;
               }
@@ -325,7 +329,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
       if(files != undefined && files){
         this.service.updateSingleProfile(this.hoso, files)
         .subscribe((result) => {
-  
+
           if (!result.isSuccess) {
             switch (result.errorCode) {
               case "-1": {
@@ -352,7 +356,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
                     this.service.updateSingleProfile(this.hoso, files)
                       .subscribe((result) => {
                         if (result.isSuccess) {
-                          
+
                           this.isOverwrite = true;
                         }
                         else {
@@ -478,7 +482,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
       var startDate = this.hoso.startDate.toString().split('T')[0];
       var endDate = this.hoso.endDate.toString().split('T')[0];
     }
-    
+
     function getDateValue (startDate : string, endDate : string) {
       if (startDate != undefined && endDate != undefined) {
         $(document).find('#date-input-start').val(startDate);
@@ -489,7 +493,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
       let str : string = '';
       let today : Date = new Date();
       let dd = String(today.getDate()).padStart(2, '0');
-      let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
       let yyyy = today.getFullYear();
       //  this.date = new Date(yyyy + '-' + mm + '-' + dd);
       str = yyyy + '-' + mm + '-' + dd;
@@ -542,7 +546,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
 
       });
 
-    } 
+    }
   }
   onFontChange(fontID : any){
     // if font select2 box is changed, set value of its child to empty
@@ -618,7 +622,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
   public getAllOrgan() {
     this.danhmucService.getAllCoQuan()
       .subscribe((result) => {
-        
+
         if (result != undefined) {
           var organList = [];
           for (var item of result.itemList) {
@@ -636,7 +640,7 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
         });
   }
 
-  
+
   loadPages(page : number, pageSize: number) {
     this.fileTemp = new FileUploader({
       isHTML5: true
@@ -684,12 +688,12 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
     if(this.isSelectAll){
       this.uploader.queue.forEach(element => {
         element.isCancel = true;
-      });  
-    } 
+      });
+    }
     else{
       this.uploader.queue.forEach(element => {
         element.isCancel = false;
-      });  
+      });
     }
   }
 
@@ -700,13 +704,13 @@ export class HoSoDialogComponent implements OnInit, AfterContentInit {
           element.isCancel = false;
         }
       });
-    } 
+    }
     else{
       this.uploader.queue.forEach(element => {
         if(element.file.name === name){
           element.isCancel = true;
         }
-      });  
+      });
     }
   }
 

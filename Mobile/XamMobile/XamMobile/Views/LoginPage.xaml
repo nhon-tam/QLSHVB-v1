@@ -61,7 +61,7 @@
             </Grid>
             <StackLayout Grid.Row="2" BackgroundColor="#ffffff">
                 <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
-                <Label Text="Code by lekimphi1997@gmail.com" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <Label Text="Code by daonhontam@gmail.com" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

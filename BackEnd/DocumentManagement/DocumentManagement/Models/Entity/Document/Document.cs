@@ -11,7 +11,7 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Mã định danh văn bản
         /// </summary>
-        public string DocumentCode { get; set; }
+        public string? DocumentCode { get; set; }
         /// <summary>
         /// Số thứ tự văn bản
         /// </summary>
@@ -24,11 +24,11 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Số của văn bản
         /// </summary>
-        public string CodeNumber { get; set; }
+        public string? CodeNumber { get; set; }
         /// <summary>
         /// Ký hiệu của văn bản
         /// </summary>
-        public string CodeNotation { get; set; }
+        public string? CodeNotation { get; set; }
         /// <summary>
         /// Ngày, tháng, năm văn bản
         /// </summary>
@@ -36,7 +36,7 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Nội dung
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
         public int LanguageId { get; set; }
         /// <summary>
         /// Số lượng trang văn bản
@@ -45,15 +45,15 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Ghi chú
         /// </summary>
-        public string Description { get; set; }
+        public string? Description { get; set; }
         /// <summary>
         /// Ký hiệu thông tin
         /// </summary>
-        public string InforSign { get; set; }
+        public string? InforSign { get; set; }
         /// <summary>
         /// Từ khóa
         /// </summary>
-        public string Keyword { get; set; }
+        public string? Keyword { get; set; }
         /// <summary>
         /// Chế độ sử dụng
         /// </summary>
@@ -62,7 +62,7 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Bút tích
         /// </summary>
-        public string Autograph { get; set; }
+        public string? Autograph { get; set; }
         /// <summary>
         /// Tình trạng vật lý
         /// </summary>
@@ -71,24 +71,24 @@ namespace DocumentManagement.Models.Entity.Document
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        public string? CreatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
         
         public int ProfileId { get; set; }
 
-        public string ServerPath { get; set; }
+        public string? ServerPath { get; set; }
 
         public int Status { get; set; }
         public int Signature { get; set; }
         public int Confirmed { get; set; }
 
-        public string FileName { get; set; }
+        public string? FileName { get; set; }
 
-        public string ClientUrl { get; set; }
+        public string? ClientUrl { get; set; }
 
-        public string ProfileNumber { get; set; }
-        public string TypeName { get; set; }
+        public string? ProfileNumber { get; set; }
+        public string? TypeName { get; set; }
 
-        public string OrganizationIssued { get; set; }
+        public string? OrganizationIssued { get; set; }
     }
 }

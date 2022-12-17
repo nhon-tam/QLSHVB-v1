@@ -229,7 +229,7 @@ namespace DocumentManagement.DAL
             string outMessage = String.Empty;
             dbProvider.SetQuery("DOCUMENT_DELETE", CommandType.StoredProcedure)
                 .SetParameter("DocumentId", SqlDbType.Int, document.DocumentId, ParameterDirection.Input)
-                .SetParameter("UpdatedDate", SqlDbType.Date, document.UpdatedDate, ParameterDirection.Input)
+                .SetParameter("UpdatedDate", SqlDbType.Date, DateTime.Now, ParameterDirection.Input)
                 .SetParameter("UpdatedBy", SqlDbType.NVarChar, document.UpdatedBy, ParameterDirection.Input)
                 .SetParameter("ErrorCode", SqlDbType.NVarChar, DBNull.Value, 100, ParameterDirection.Output)
                 .SetParameter("ErrorMessage", SqlDbType.NVarChar, DBNull.Value, 4000, ParameterDirection.Output)

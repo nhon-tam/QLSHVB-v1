@@ -11,7 +11,7 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Mã định danh văn bản
         /// </summary>
-        public string DocumentCode { get; set; }
+        public string? DocumentCode { get; set; }
         /// <summary>
         /// Số thứ tự văn bản
         /// </summary>
@@ -19,19 +19,19 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Tên loại văn bản
         /// </summary>
-        public string TypeName { get; set; }
+        public string? TypeName { get; set; }
         /// <summary>
         /// Mã hồ sơ
         /// </summary>
-        public string FileCode { get; set; }
+        public string? FileCode { get; set; }
         /// <summary>
         /// Số của văn bản
         /// </summary>
-        public string CodeNumber { get; set; }
+        public string? CodeNumber { get; set; }
         /// <summary>
         /// Ký hiệu của văn bản
         /// </summary>
-        public string CodeNotation { get; set; }
+        public string? CodeNotation { get; set; }
         /// <summary>
         /// Ngày, tháng, năm văn bản
         /// </summary>
@@ -39,11 +39,11 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Nội dung
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
         /// <summary>
         /// Tên ngôn ngữ
         /// </summary>
-        public string Language { get; set; }
+        public string? Language { get; set; }
         /// <summary>
         /// Số lượng trang văn bản
         /// </summary>
@@ -51,39 +51,39 @@ namespace DocumentManagement.Models.Entity.Document
         /// <summary>
         /// Ghi chú
         /// </summary>
-        public string Description { get; set; }
+        public string? Description { get; set; }
         /// <summary>
         /// Ký hiệu thông tin
         /// </summary>
-        public string InforSign { get; set; }
+        public string? InforSign { get; set; }
         /// <summary>
         /// Từ khóa
         /// </summary>
-        public string Keyword { get; set; }
+        public string? Keyword { get; set; }
         /// <summary>
         /// Chế độ sử dụng
         /// </summary>
-        public string Mode { get; set; }
+        public string? Mode { get; set; }
         /// <summary>
         /// Mức độ tin cậy
         /// </summary>
-        public string ConfidenceLevel { get; set; }
+        public string? ConfidenceLevel { get; set; }
         /// <summary>
         /// Bút tích
         /// </summary>
-        public string Autograph { get; set; }
+        public string? Autograph { get; set; }
         /// <summary>
         /// Tình trạng vật lý
         /// </summary>
-        public string Format { get; set; }
-        public string FileUrl { get; set; }
+        public string? Format { get; set; }
+        public string? FileUrl { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        public string? CreatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
         public int Status { get; set; }
-        public string MucDoTinCay { get; set; }
+        public string? MucDoTinCay { get; set; }
 
         public int Confirmed { get; set; }
 

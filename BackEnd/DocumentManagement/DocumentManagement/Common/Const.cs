@@ -7,7 +7,7 @@ namespace DocumentManagement.Common
 {
     public static class Const
     {
-        public static readonly string API_URL = @"https://localhost:44357";
+        public static readonly string API_URL = @"http://localhost:5000";
 
 
         public static readonly string FILE_UPLOAD_DIR = Environment.CurrentDirectory + @"\FilesUpload\";
