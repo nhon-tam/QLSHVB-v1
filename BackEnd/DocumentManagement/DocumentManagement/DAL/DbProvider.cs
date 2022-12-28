@@ -46,7 +46,6 @@ namespace DocumentManagement.Model
         }
         public Db()
         {
-            //_connectionString = "Data Source=117.1.86.14\\SQLEXPRESS,1433;Initial Catalog=SoHoa;User ID=DucNghiep;Password=123456";
             _connectionString = "Server=(localdb)\\mssqllocaldb;Database=SoHoa;Trusted_Connection=True;";
             _connection = new SqlConnection(_connectionString);
             if (_connection.State == ConnectionState.Closed)
