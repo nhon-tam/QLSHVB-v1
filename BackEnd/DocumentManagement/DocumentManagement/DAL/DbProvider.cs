@@ -46,7 +46,7 @@ namespace DocumentManagement.Model
         }
         public Db()
         {
-            _connectionString = "Server=(localdb)\\mssqllocaldb;Database=SoHoa;Trusted_Connection=True;";
+            _connectionString = @"Server=DESKTOP-EEMFBS8\TAM;user id=sa;password=123456;Database=SoHoa;Trusted_Connection=True;";
             _connection = new SqlConnection(_connectionString);
             if (_connection.State == ConnectionState.Closed)
             {

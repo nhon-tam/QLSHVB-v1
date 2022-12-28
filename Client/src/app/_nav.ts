@@ -123,25 +123,25 @@ export const navItems: INavData[] = [
     ]
   },
   {
-    name: 'Thống kê báo cáo',
+    name: 'Báo cáo',
     url: '',
     icon: 'icon-chart',
     attributes: { style: 'color: #20a8d8;' },
     children: [
       {
-        name: 'Thống kê tổng quát',
+        name: 'Báo cáo tổng quát',
         url: '/ThongKe/thongKeTongQuat',
         icon: 'icon-chart',
         attributes: { style: 'margin-left: 10px;' }
       },
       {
-        name: 'Thống kê tài liệu',
+        name: 'Báo cáo tài liệu',
         url: '/ThongKe/thongKeVanBan',
         icon: 'fa fa-file-text',
         attributes: { style: 'margin-left: 10px;' }
       },
       {
-        name: 'Thống kê hồ sơ',
+        name: 'Báo cáo hồ sơ',
         url: '/ThongKe/thongKeHoSo',
         icon: 'fa fa-folder',
         attributes: { style: 'margin-left: 10px;' }
