@@ -55,12 +55,12 @@ export const navItems: INavData[] = [
         icon: 'fa fa-search',
         attributes: { style: 'margin-left: 10px;' }
       },
-      {
-        name: 'Import dữ liệu tài liệu',
-        url: '/ImportData/importData',
-        icon: 'fa fa-file',
-        attributes: { style: 'margin-left: 10px;' }
-      }
+      // {
+      //   name: 'Import dữ liệu tài liệu',
+      //   url: '/ImportData/importData',
+      //   icon: 'fa fa-file',
+      //   attributes: { style: 'margin-left: 10px;' }
+      // }
     ]
   },
 
