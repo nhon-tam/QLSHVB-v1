@@ -9,4 +9,5 @@ export class VanBanDTO  {
     public pageAmount?: number
     public confidenceLevel?: string
     public confirmed?: number
+    public signature?: number
   }
