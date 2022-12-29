@@ -43,7 +43,7 @@ namespace DocumentManagement.Controllers
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult CreateDocument([FromBody] Document document, [FromQuery] string name = "", [FromQuery] string docPath = "")
+        public IActionResult CreateDocument([FromBody] Document document, [FromQuery] string? name = "", [FromQuery] string? docPath = "")
         {
             DocumentBUS documentBUS = new DocumentBUS();
             bool hasSignature = false;
